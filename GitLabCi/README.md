@@ -1,12 +1,11 @@
 # GitLab CI Tutorial
 ## Create a new GitLab Repo
-- Go to [GitLabCI](https://www.gitlab.com)
-- Create an Account
-- Go to Projects > New Project
+- Create an Account [GitLabCI/Register](https://gitlab.com/users/sign_up)
+- Click the `+` symbol > New Project
 - Give it a name
 - Set the visibility (private, internal, public)
 
-## Create a new file with the name `.gitlab-ci.yml`
+## Click Setup CI/CD or Create a new file with the name `.gitlab-ci.yml`
 GitLab will automatically detect this file with the specific name.
 
 ### We will define some stages
@@ -18,24 +17,27 @@ stages:
 
 ### Define the `build` stage
 ```
-build:
+Build Stage:
     stage: build
 ```
 
 ### Make this stage run an inline script
 ```
-build:
+Build Stage:
     stage: build
     script:
         - echo "Building"
         - mkdir build
         - touch build/info.txt
+    artifacts:
+        paths:
+            - build/
 ```
 What this did was define a script and its an inline script, echoing to the console, creating a new directory naemd build, and adding creating a new file named info.txt.
 
 ### Define the `test` stage
 ```
-test: 
+Test Stage: 
     stage: test
     script:
         - echo "Testing"
@@ -49,7 +51,7 @@ Inside `.gitlab-ci.yml`
 stages:
     - build
     - test
-build:
+Build Stage:
     stage: build
     script:
         - echo "Building"
@@ -58,7 +60,7 @@ build:
     artifacts:
         paths:
             - build/
-test: 
+Test Stage: 
     stage: test
     script:
         - echo "Testing"
